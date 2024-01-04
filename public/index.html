@@ -1,0 +1,28 @@
+<!-- index.html (Connect to Wallet Page) -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect to Wallet</title>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="web3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="nftmint_abi.js"></script>
+</head>
+<body>
+    <h1>Welcome to NFT Minter!</h1>
+    <p>Connect your wallet to proceed:</p>
+    <button id="connectWalletButton">Connect to Your Wallet</button>
+
+    <script>
+        document.getElementById('connectWalletButton').onclick = async function() {
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                console.log('Connected with address:', accounts[0]);
+                
+                window.location.href = 'minter.html'; // Minter sayfasına yönlendirme
+            } catch (error) {
+                console.error('Error connecting to wallet:', error);
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NFT Minter</title>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="web3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="nftmint_abi.js"></script>
+    <style>
+        /* Stil özellikleri */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .column {
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .half-column {
+            width: 48%;
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            max-height: 100%;
+            border: 1px solid #ccc;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>NFT Minting Page</h1>
+    
+    <div class="container">
+        <div class="column">
+            <h2>General Info</h2>
+            <div class="row">
+                <div class="half-column">
+                    <label for="nameInput">Name:</label>
+                    <input type="text" id="nameInput" placeholder="Enter name">
+<input type="file" id="imageInput" accept="image/*" onchange="displayImagePreview(this)">
+                </div>
+                <div class="half-column">
+				<div id="previewContainer">
+                <img id="imagePreview" src="#" alt="Image Preview">
+            			</div>
+                </div>
+            </div>
+            <div class="row">
+</div>
+            
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="column">
+            <h2>Meta Data</h2>
+            <div class="row">
+                <div class="half-column">
+                    <label for="metaKeyInput">Key:</label>
+                    <input type="text" id="metaKeyInput" placeholder="Enter key">
+                </div>
+                <div class="half-column">
+                    <label for="metaValueInput">Value:</label>
+                    <input type="text" id="metaValueInput" placeholder="Enter value">
+                </div>
+            </div>
+            <button id="addMetaDataButton">Add Meta Data</button>
+            <div id="metaDataList"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="column">
+            <h2>Price</h2>
+            <label for="priceInput">Price:</label>
+            <input type="number" id="priceInput" placeholder="Enter price">
+        </div>
+    </div>
+
+    <button id="mintButton">Mint NFT</button>
+
+    <script>
+        function displayImagePreview(input) {
+            const imagePreview = document.getElementById('imagePreview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.style.display = 'block';
+                    imagePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.getElementById('mintButton').onclick = async function() {
+            const name = document.getElementById('nameInput').value;
+            const metaData = document.getElementById('metaDataInput').value;
+            const price = document.getElementById('priceInput').value;
+            
+            // Gerçek NFT oluşturma işlemleri
+            const tokenContract = new web3.eth.Contract(tokenABI, tokenContractAddress);
+
+        };
+    </script>
+</body>
+</html>
